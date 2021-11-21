@@ -1,9 +1,9 @@
-import React from "react";
-import { PlayCircleFilled, PauseCircleFilled } from "@ant-design/icons"
+import React, { useState } from "react";
+import { Button } from 'antd';
+import { CaretRightOutlined, PauseOutlined } from "@ant-design/icons"
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
 import "./Countdown.css";
-
 
 const renderTime = ({ remainingTime }) => {
     if (remainingTime === 0) {
@@ -32,14 +32,18 @@ const renderTime = ({ remainingTime }) => {
 };
 
 const Countdown = () => {
+    const [key, setKey] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
+
     return (
         <>
             <div className="timer-wrapper">
-            <PauseCircleFilled style={{ color: "#ffffff", fontSize: "300%" }} />
+                <Button type="primary" shape="circle" icon={<PauseOutlined />} style={{ backgroundColor: "#ffffff", borderColor: "#ffffff", color: "#202020" }} onClick={() => setIsPlaying(false)} />
                 <CountdownCircleTimer
+                    key={key}
                     size={300}
                     strokeWidth={24}
-                    isPlaying
+                    isPlaying={isPlaying}
                     trailColor={'#2a2a2a'}
                     duration={10}
                     colors={"#ffffff"}
@@ -47,7 +51,7 @@ const Countdown = () => {
                 >
                     {renderTime}
                 </CountdownCircleTimer>
-                <PlayCircleFilled style={{ color: "#ffffff", fontSize: "300%" }} />
+                <Button type="primary" shape="circle" icon={<CaretRightOutlined />} style={{ backgroundColor: "#ffffff", borderColor: "#ffffff", color: "#202020" }} onClick={() => setIsPlaying(true)} />
             </div>
         </>
     );
