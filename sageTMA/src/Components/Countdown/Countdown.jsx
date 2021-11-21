@@ -37,6 +37,7 @@ const Countdown = () => {
 
     return (
         <>
+            <h1>ACTIVITY <br /> TITLE GOES HERE</h1>
             <div className="timer-wrapper">
                 <Button type="primary" shape="circle" icon={<PauseOutlined />} style={{ backgroundColor: "#ffffff", borderColor: "#ffffff", color: "#202020" }} onClick={() => setIsPlaying(false)} />
                 <CountdownCircleTimer
@@ -45,7 +46,7 @@ const Countdown = () => {
                     strokeWidth={24}
                     isPlaying={isPlaying}
                     trailColor={'#2a2a2a'}
-                    duration={10}
+                    duration={120}
                     colors={"#ffffff"}
                 // onComplete={() => [true, 1000]}
                 >
@@ -53,6 +54,7 @@ const Countdown = () => {
                 </CountdownCircleTimer>
                 <Button type="primary" shape="circle" icon={<CaretRightOutlined />} style={{ backgroundColor: "#ffffff", borderColor: "#ffffff", color: "#202020" }} onClick={() => setIsPlaying(true)} />
             </div>
+            <p className="Description">All of the wonderful information about your activity goes here.</p>
         </>
     );
 };
