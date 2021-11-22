@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Drawer, Button } from 'antd';
-import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { RightOutlined, UnorderedListOutlined } from '@ant-design/icons';
 
 import './TaskDrawer.css'
 
@@ -17,15 +17,13 @@ const TaskDrawer = () => {
         setVisible(false);
     };
 
+
     return (
         <>
-            <Button type="primary" onClick={showDrawer} className="TaskButton" style={{ backgroundColor: "#ffffff", borderColor: "#ffffff"}}>
-                {visible ? <RightOutlined style={{ color: "#202020"}}/> : <LeftOutlined style={{ color: "#202020"}}/>}
+            <Button type="primary" onClick={showDrawer} className="TaskButton" style={{ backgroundColor: "#ffffff", borderColor: "#ffffff" }}>
+                {visible ? <RightOutlined style={{ color: "#202020" }} /> : <UnorderedListOutlined style={{ color: "#202020" }} />}
             </Button>
             <Drawer title="Tasks" placement="right" onClose={onClose} visible={visible}>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
-                <p>Some contents...</p>
             </Drawer>
         </>
     );
