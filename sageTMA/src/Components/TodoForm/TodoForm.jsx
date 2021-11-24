@@ -12,7 +12,7 @@ var taskTime = ""
 class TodoForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { todoInput: "", todoTime: "" };
+        this.state = { todoInput: "", todoDesc: "", todoTime: "" };
     }
 
     handleSubmit = event => {
@@ -20,10 +20,10 @@ class TodoForm extends React.Component {
         taskMins = moment.duration(this.state.todoTime).get('minutes')
         taskSec = moment.duration(this.state.todoTime).get('seconds')
         taskTime = taskSec + (taskMins*60)
-        console.log(taskTime)
-        this.props.addTodo([this.state.todoInput, taskTime]);
-        console.log([this.state.todoInput, taskTime])
+        this.props.addTodo([this.state.todoInput, this.state.todoDesc, taskTime]);
+        console.log([this.state.todoInput, this.state.todoDesc, taskTime])
         this.state.todoInput = "";
+        this.state.todoDesc = "";
         this.state.todoTime = "";
     };
 
@@ -31,9 +31,9 @@ class TodoForm extends React.Component {
         this.setState({ todoInput: event.target.value });
     };
 
-    // handleTimeChange = event => {
-    //     this.setState({ todoTime: event.target.value });
-    // }
+    handleDescChange = event => {
+        this.setState({ todoDesc: event.target.value });
+    };
 
     onTimeChange = time => {
         this.setState({ todoTime: time })
@@ -44,9 +44,15 @@ class TodoForm extends React.Component {
             <form onSubmit={event => this.handleSubmit(event)}>
                 <Input
                     type="text"
-                    placeholder="Add todo"
+                    placeholder="Activity Name"
                     value={this.state.todoInput}
                     onChange={event => this.handleChange(event)}
+                />
+                <Input
+                    type="text"
+                    placeholder="Activity Description"
+                    value={this.state.todoDesc}
+                    onChange={event => this.handleDescChange(event)}
                 />
                 <TimePicker
                     type="text"

@@ -35,18 +35,17 @@ const Countdown = (props) => {
     const [key, setKey] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
 
-    console.log(props.todos[0][1])
-
     const changeKey = () => {
         setKey(prevKey => prevKey + 1)
     }
 
     if (props.count > key){
+        console.log(key)
         changeKey()
     }
 
     const handleComplete = () =>{
-        props.deleteCurrentTodo();
+        //props.deleteCurrentTodo();
     }
 
     return (
@@ -60,7 +59,7 @@ const Countdown = (props) => {
                     strokeWidth={24}
                     isPlaying={isPlaying}
                     trailColor={'#2a2a2a'}
-                    duration={props.todos[0][1]}
+                    duration={props.todos[0][2]}
                     colors={"#ffffff"}
                     onComplete={() => handleComplete()}
                 >
@@ -68,7 +67,7 @@ const Countdown = (props) => {
                 </CountdownCircleTimer>
                 <Button type="primary" shape="circle" icon={<CaretRightOutlined />} style={{ backgroundColor: "#ffffff", borderColor: "#ffffff", color: "#202020" }} onClick={() => setIsPlaying(true)} />
             </div>
-            <p className="Description">All of the wonderful information about your activity goes here.</p>
+            <p className="Description">{props.todos[0][1]}</p>
         </>
     );
 };

@@ -9,7 +9,7 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            todos: [['Example Activity', 1]],
+            todos: [['Example Activity', 'All of the wonderful information about your activity goes here.', 1]],
             count: 0
         };
     }
