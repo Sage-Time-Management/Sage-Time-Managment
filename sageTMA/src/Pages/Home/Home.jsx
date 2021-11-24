@@ -38,6 +38,7 @@ class Home extends React.Component {
     render() {
         return (
             <>
+                <h2 style={{color: 'white', fontSize: '50px', paddingLeft: '20px'}}>CHRONOS</h2>
                 <Countdown todos={this.state.todos} deleteCurrentTodo={this.deleteCurrentTodo} count={this.state.count}/>
                 <TaskDrawer addTodo={this.addTodo} todos={this.state.todos} deleteTodo={this.deleteTodo}/>
                 <SettingsDrawer />
