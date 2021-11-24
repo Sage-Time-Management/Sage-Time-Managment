@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Children, useState } from "react";
 import { Button } from 'antd';
 import { CaretRightOutlined, PauseOutlined } from "@ant-design/icons"
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
@@ -31,13 +31,27 @@ const renderTime = ({ remainingTime }) => {
     );
 };
 
-const Countdown = () => {
+const Countdown = (props) => {
     const [key, setKey] = useState(0);
     const [isPlaying, setIsPlaying] = useState(false);
 
+    console.log(props.todos[0][1])
+
+    const changeKey = () => {
+        setKey(prevKey => prevKey + 1)
+    }
+
+    if (props.count > key){
+        changeKey()
+    }
+
+    const handleComplete = () =>{
+        props.deleteCurrentTodo();
+    }
+
     return (
         <>
-            <h1>ACTIVITY <br /> TITLE GOES HERE</h1>
+            <h1>CURRENT ACTIVITY: <br /> {props.todos[0][0]}</h1>
             <div className="timer-wrapper">
                 <Button type="primary" shape="circle" icon={<PauseOutlined />} style={{ backgroundColor: "#ffffff", borderColor: "#ffffff", color: "#202020" }} onClick={() => setIsPlaying(false)} />
                 <CountdownCircleTimer
@@ -46,9 +60,9 @@ const Countdown = () => {
                     strokeWidth={24}
                     isPlaying={isPlaying}
                     trailColor={'#2a2a2a'}
-                    duration={120}
+                    duration={props.todos[0][1]}
                     colors={"#ffffff"}
-                // onComplete={() => [true, 1000]}
+                    onComplete={() => handleComplete()}
                 >
                     {renderTime}
                 </CountdownCircleTimer>
